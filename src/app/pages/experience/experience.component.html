@@ -1,0 +1,23 @@
+<section class="page-shell inner-page">
+  <span class="section-kicker">{{ text.career }}</span>
+  <h1>{{ text.experienceHeading }}</h1>
+  <p class="lead">Frontend engineering experience across client and product applications, with responsibility spanning implementation, coordination, testing and delivery.</p>
+
+  <div class="timeline">
+    @for (job of jobs; track job.role + job.period) {
+      <article class="timeline-item">
+        <div class="dot"></div>
+        <div class="job-meta">{{ job.period }}</div>
+        <div class="job-card">
+          <h2>{{ job.role }}</h2>
+          <p class="company">{{ job.company }}</p>
+          <ul>
+            @for (bullet of job.bullets; track bullet) {
+              <li>{{ bullet }}</li>
+            }
+          </ul>
+        </div>
+      </article>
+    }
+  </div>
+</section>

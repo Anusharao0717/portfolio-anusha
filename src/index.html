@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Anusha Pavanraj | Senior Frontend Developer</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Anusha Pavanraj — Senior Frontend Developer specializing in Angular, React, Vue.js and TypeScript.">
+  <meta name="author" content="Anusha Pavanraj">
+  <meta name="robots" content="index, follow">
+  <!-- Open Graph / Twitter (crawlers don't run JS, so these are static; __SITE_URL__ is filled in by the deploy workflow) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Anusha Pavanraj">
+  <meta property="og:title" content="Anusha Pavanraj | Senior Frontend Developer">
+  <meta property="og:description" content="Senior Frontend Developer with 6+ years of experience building scalable Angular, React and TypeScript applications.">
+  <meta property="og:url" content="__SITE_URL__">
+  <meta property="og:image" content="__SITE_URL__images/hero-anusha.png">
+  <meta property="og:image:alt" content="Anusha Pavanraj, frontend developer">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Anusha Pavanraj | Senior Frontend Developer">
+  <meta name="twitter:description" content="Senior Frontend Developer with 6+ years of experience building scalable Angular, React and TypeScript applications.">
+  <meta name="twitter:image" content="__SITE_URL__images/hero-anusha.png">
+  <!-- Structured data: helps search engines understand who this site is about -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Anusha Pavanraj",
+    "jobTitle": "Senior Frontend Developer",
+    "url": "__SITE_URL__",
+    "image": "__SITE_URL__images/hero-anusha.png",
+    "worksFor": { "@type": "Organization", "name": "Bix Bytes Solutions Pvt Ltd" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Mangaluru", "addressRegion": "Karnataka", "addressCountry": "IN" },
+    "knowsAbout": ["Angular", "React", "Vue.js", "TypeScript", "JavaScript", "RxJS", "SCSS", "REST APIs", "Responsive web design", "Web accessibility"],
+    "sameAs": ["https://linkedin.com/in/anusha-rao-979713124", "https://github.com/Anusharao0717"]
+  }
+  </script>
+  <!-- Performance: fetch the hero image (the largest visible element) as early as possible -->
+  <link rel="preload" as="image" href="images/hero-anusha.webp" type="image/webp" fetchpriority="high">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#070b17">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23653dff'/%3E%3Ctext x='32' y='44' font-size='34' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+  <!-- Apply saved/system theme before first paint so there is no dark/light flash -->
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('portfolio-theme');
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.classList.toggle('light-theme', theme === 'light');
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>

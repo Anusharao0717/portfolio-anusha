@@ -1,0 +1,18 @@
+<section class="page-shell inner-page">
+  <span class="section-kicker">{{ text.contactKicker }}</span>
+  <h1>{{ text.contactHeading }}</h1>
+  <p class="lead">{{ text.contactText }}</p>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <a [href]="'mailto:' + site.email"><span><app-icon name="mail" [size]="17" /></span> {{ site.email }}</a>
+      <a [href]="site.phoneHref"><span><app-icon name="phone" [size]="17" /></span> {{ site.phone }}</a>
+      <a [href]="site.linkedin" target="_blank" rel="noopener"><span><app-icon name="linkedin" [size]="17" /></span> {{ site.linkedinLabel }}</a>
+      <a [href]="site.github" target="_blank" rel="noopener"><span><app-icon name="github" [size]="17" /></span> {{ site.githubLabel }}</a>
+      <p><strong>{{ text.location }}</strong><br>Mangalore, India</p>
+      <p><strong>{{ text.languages }}</strong><br>English · Kannada · Hindi · Tulu</p>
+    </div>
+
+    <div class="contact-form-card"><app-contact-form /></div>
+  </div>
+</section>

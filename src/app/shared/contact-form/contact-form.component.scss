@@ -1,0 +1,16 @@
+:host { display: block; }
+.contact-form { display: grid; gap: 10px; }
+.input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+input, textarea {
+  width: 100%; border: 1px solid var(--border); border-radius: 10px; background: var(--input-bg);
+  color: var(--text); padding: 14px; font-size: 14px; outline: none;
+}
+input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+input::placeholder, textarea::placeholder { color: var(--muted); opacity: .75; }
+textarea { resize: vertical; min-height: 140px; }
+.btn { width: 100%; }
+.btn:disabled { opacity: .7; cursor: progress; }
+.form-error a { text-decoration: underline; }
+.spin { animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 600px) { .input-row { grid-template-columns: 1fr; } }

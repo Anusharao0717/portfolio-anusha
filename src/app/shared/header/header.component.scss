@@ -1,0 +1,74 @@
+.site-header {
+  position: sticky; top: 0; z-index: 1000;
+  min-height: 74px;
+  display: flex; align-items: center; gap: 22px;
+  padding: 12px clamp(14px, 4vw, 64px);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+}
+
+.brand { display: flex; align-items: center; gap: 10px; min-width: 0; color: var(--text); font-weight: 800; white-space: nowrap; }
+.brand-mark { width: 38px; height: 38px; flex: 0 0 38px; display: grid; place-items: center; border-radius: 11px; background: linear-gradient(135deg, #633cff, #a85cff); color: #fff; }
+.brand-name { overflow: hidden; text-overflow: ellipsis; }
+
+.nav-links { display: flex; justify-content: center; gap: 22px; flex: 1; order: 2; }
+.nav-links a { color: var(--muted); font-size: 13px; font-weight: 700; white-space: nowrap; }
+.nav-links a { position: relative; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.nav-links a.active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: var(--accent); }
+.nav-resume { display: none; }
+
+.header-actions { display: flex; align-items: center; gap: 8px; order: 3; }
+.mobile-menu { border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; }
+.mobile-menu:hover { border-color: var(--accent); }
+.resume-btn { display: inline-flex; align-items: center; gap: 6px; }
+
+/* sun / moon pill toggle */
+.theme-toggle {
+  position: relative; width: 66px; height: 36px; padding: 0 9px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--border-strong); background: var(--surface); color: var(--muted);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.theme-toggle:hover { border-color: var(--accent); }
+.theme-toggle .knob {
+  position: absolute; top: 3px; left: 3px; width: 28px; height: 28px; border-radius: 50%;
+  background: linear-gradient(135deg, #633cff, #a85cff); transition: transform .25s ease;
+}
+.theme-toggle.is-dark .knob { transform: translateX(30px); }
+.theme-toggle .ico { position: relative; z-index: 1; transition: color .2s ease; }
+.theme-toggle:not(.is-dark) .sun, .theme-toggle.is-dark .moon { color: #fff; }
+.resume-btn { padding: 11px 16px; border-radius: 11px; color: #fff; background: linear-gradient(135deg, #633cff, #a85cff); font-weight: 700; font-size: 12px; white-space: nowrap; }
+
+.mobile-menu { display: none; order: 4; width: 40px; height: 40px; border-radius: 10px; }
+.mobile-menu span { display: block; width: 18px; height: 2px; margin: 4px auto; background: currentColor; }
+
+@media (max-width: 1050px) {
+  .nav-links { gap: 14px; }
+  .resume-btn { display: none; }
+}
+
+@media (max-width: 760px) {
+  .site-header { flex-wrap: wrap; gap: 10px; }
+  .brand { order: 1; }
+  .header-actions { order: 2; margin-left: auto; }
+  .mobile-menu { display: block; }
+  .nav-links {
+    display: none; order: 5;
+    flex: 0 0 100%; width: 100%;          /* full-width row below the logo/toggle/burger */
+    flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0;
+    padding: 8px 0; border-top: 1px solid var(--border);
+    max-height: calc(100vh - 90px); overflow-y: auto;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 13px 4px; }
+  .nav-links a.active::after { display: none; }
+  .nav-links a.active { color: var(--accent-text); }
+  .nav-links .nav-resume { display: block; color: var(--accent-text); }
+}
+
+@media (max-width: 430px) {
+  .brand-name { max-width: 110px; }
+  .header-actions { gap: 5px; }
+  .mobile-menu { width: 38px; height: 38px; }
+}

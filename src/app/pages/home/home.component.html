@@ -1,0 +1,142 @@
+<div class="portfolio-home">
+  <section class="hero-section" id="home">
+    <div class="hero-copy">
+      <span class="eyebrow"><app-icon name="sparkles" [size]="14" /> {{ text.senior }}</span>
+      <h1>{{ text.heroTitle }} <span>{{ text.heroAccent }}</span></h1>
+      <p class="hero-text">{{ text.heroText }}</p>
+      <div class="hero-actions">
+        <a class="btn primary" routerLink="/" fragment="projects">{{ text.viewWork }} <app-icon name="arrow-right" [size]="18" /></a>
+        <a class="btn ghost" [href]="site.resume" target="_blank" rel="noopener"><app-icon name="file-text" [size]="18" /> {{ text.viewResume }}</a>
+      </div>
+      <div class="socials">
+        <a [href]="site.linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><app-icon name="linkedin" [size]="18" /></a>
+        <a [href]="site.github" target="_blank" rel="noopener" aria-label="GitHub"><app-icon name="github" [size]="18" /></a>
+        <a [href]="'mailto:' + site.email" aria-label="Email"><app-icon name="mail" [size]="18" /></a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-glow glow-purple"></div>
+      <div class="hero-glow glow-blue"></div>
+      <div class="hero-photo">
+        <img src="images/hero-anusha.webp" width="414" height="380"
+             alt="Anusha Pavanraj, frontend developer, working on a laptop next to Angular, React, JavaScript, TypeScript and Bootstrap logos"
+             loading="eager" fetchpriority="high" (error)="imageFallback($event, site.name)">
+      </div>
+      <div class="hero-dots"></div>
+    </div>
+  </section>
+
+  <section class="home-section about-preview" id="about" appReveal aria-labelledby="about-title">
+    <div class="section-title-row">
+      <div><span class="section-icon"><app-icon name="user" [size]="22" /></span><h2 id="about-title">{{ text.aboutMe }}</h2></div>
+      <a routerLink="/about" class="section-link">{{ text.moreAbout }} →</a>
+    </div>
+    <div class="about-preview-grid">
+      <div class="about-copy">
+        <p>{{ text.aboutText1 }}</p>
+        <p>{{ text.aboutText2 }}</p>
+        <a routerLink="/about" class="btn primary small-btn">{{ text.moreAbout }} <app-icon name="arrow-right" [size]="16" /></a>
+      </div>
+      <div class="fact-panel">
+        <div><span class="fact-icon"><app-icon name="map-pin" [size]="18" /></span><div><small>{{ text.location }}</small><strong>Mangaluru, Karnataka</strong></div></div>
+        <div><span class="fact-icon"><app-icon name="mail" [size]="18" /></span><div><small>{{ text.email }}</small><strong>{{ site.email }}</strong></div></div>
+        <div><span class="fact-icon"><app-icon name="briefcase" [size]="18" /></span><div><small>{{ text.years }}</small><strong>6+</strong></div></div>
+        <div><span class="fact-icon"><app-icon name="sparkles" [size]="18" /></span><div><small>{{ text.focus }}</small><strong>Frontend & UI Engineering</strong></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section skills-preview" id="skills" appReveal aria-labelledby="skills-title">
+    <div class="section-title-row">
+      <div><span class="section-icon"><app-icon name="settings" [size]="22" /></span><h2 id="skills-title">{{ text.skillsTitle }}</h2></div>
+      <span class="section-caption">Angular · React · TypeScript · UI Engineering</span>
+    </div>
+    <ul class="skill-grid" role="list">
+      @for (skill of skills; track skill.name; let i = $index) {
+        <li class="skill-card" [appReveal]="i * 35"><span class="skill-logo" [class]="skill.className"><app-icon [name]="skill.icon" [size]="20" /></span><span>{{ skill.name }}</span></li>
+      }
+    </ul>
+    <div class="stats-grid">
+      <div class="stat-card"><span class="stat-icon"><app-icon name="briefcase" [size]="18" /></span><div><strong>6+</strong><small>{{ text.years }}</small></div></div>
+      <div class="stat-card"><span class="stat-icon"><app-icon name="layers" [size]="18" /></span><div><strong>Angular</strong><small>{{ text.primary }}</small></div></div>
+      <div class="stat-card"><span class="stat-icon"><app-icon name="sparkles" [size]="18" /></span><div><strong>AI + Canvas</strong><small>{{ text.advanced }}</small></div></div>
+      <div class="stat-card"><span class="stat-icon"><app-icon name="globe" [size]="18" /></span><div><strong>4</strong><small>{{ text.languages }}</small></div></div>
+    </div>
+  </section>
+
+  <section class="home-section experience-preview" id="experience" appReveal aria-labelledby="experience-title">
+    <div class="section-title-row">
+      <div><span class="section-icon"><app-icon name="briefcase" [size]="22" /></span><h2 id="experience-title">{{ text.experience }}</h2></div>
+    </div>
+    <div class="experience-timeline">
+      <article class="experience-item">
+        <span class="timeline-dot"></span>
+        <div class="experience-badge"><app-icon name="building-2" [size]="24" /></div>
+        <div class="experience-content">
+          <div class="experience-head"><div><h3>Senior Frontend Developer / Software Engineer</h3><span>Bix Bytes Solutions Pvt Ltd · Mangaluru</span></div><time>Oct 2019 – Present</time></div>
+          <ul>
+            <li>Develop and maintain scalable web applications using Angular, React, TypeScript and modern frontend technologies.</li>
+            <li>Build reusable components, dashboards, forms, planners, timelines and responsive application experiences.</li>
+            <li>Work with REST APIs, real-time notifications, canvas UI, offline data handling, AI-enabled chat and drag-and-drop workflows.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+    <a routerLink="/experience" class="experience-link">{{ text.viewFullExperience }} →</a>
+  </section>
+
+  <section class="home-section projects-preview" id="projects" appReveal aria-labelledby="projects-title">
+    <div class="section-title-row">
+      <div><span class="section-icon"><app-icon name="folder-open" [size]="22" /></span><h2 id="projects-title">{{ text.workTitle }}</h2></div>
+      <a routerLink="/projects" class="section-link">{{ text.viewAll }} →</a>
+    </div>
+    @defer (on viewport; prefetch on idle) {
+    <div class="project-grid">
+      @for (project of projects; track project.title; let i = $index) {
+        <article class="project-card" [appReveal]="i * 90">
+          <div class="project-image"><img [src]="project.image" [alt]="project.title" width="200" height="111" loading="lazy" decoding="async" (error)="imageFallback($event, project.title)"><span>{{ project.tag }}</span></div>
+          <div class="project-content">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description }}</p>
+            <a routerLink="/projects">{{ text.details }} →</a>
+            <a class="project-github" [href]="site.github" target="_blank" rel="noopener" [attr.aria-label]="'GitHub repository for ' + project.title"><app-icon name="github" [size]="18" /></a>
+          </div>
+        </article>
+      }
+    </div>
+    } @placeholder {
+      <div class="defer-ph defer-ph--projects"></div>
+    }
+  </section>
+
+  <section class="home-section strengths-preview" appReveal aria-labelledby="strengths-title">
+    <div class="section-title-row">
+      <div><span class="section-icon"><app-icon name="quote" [size]="22" /></span><h2 id="strengths-title">{{ text.whatIBring }}</h2></div>
+    </div>
+    <div class="strength-grid">
+      <article [appReveal]="0"><div class="strength-avatar" aria-hidden="true">A</div><div><p>Strong frontend engineering across Angular, React, TypeScript and responsive UI systems.</p><strong>Frontend Engineering</strong><small>Reusable components & scalable architecture</small></div></article>
+      <article [appReveal]="120"><div class="strength-avatar" aria-hidden="true">UI</div><div><p>Hands-on experience with complex workflows, canvas interfaces, real-time features and AI-enabled UI.</p><strong>Product UI</strong><small>Complex interactions & polished experiences</small></div></article>
+    </div>
+  </section>
+
+  <section class="home-section contact-preview" id="contact" appReveal aria-labelledby="contact-title">
+    <div class="section-title-row">
+      <div><span class="section-icon"><app-icon name="mail" [size]="22" /></span><h2 id="contact-title">{{ text.contactHeading }}</h2></div>
+    </div>
+    <div class="contact-preview-grid">
+      <div class="contact-copy">
+        <p>{{ text.contactText }}</p>
+        <a [href]="'mailto:' + site.email"><app-icon name="mail" [size]="16" /> {{ site.email }}</a>
+        <a [href]="site.phoneHref"><app-icon name="phone" [size]="16" /> {{ site.phone }}</a>
+        <a [href]="site.linkedin" target="_blank" rel="noopener"><app-icon name="linkedin" [size]="16" /> {{ site.linkedinLabel }}</a>
+        <a [href]="site.github" target="_blank" rel="noopener"><app-icon name="github" [size]="16" /> {{ site.githubLabel }}</a>
+      </div>
+      @defer (on viewport; prefetch on idle) {
+        <app-contact-form />
+      } @placeholder {
+        <div class="defer-ph defer-ph--form"></div>
+      }
+    </div>
+  </section>
+</div>

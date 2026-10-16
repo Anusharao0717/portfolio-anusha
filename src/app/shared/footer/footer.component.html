@@ -1,0 +1,15 @@
+<footer class="footer">
+  <div>
+    <a routerLink="/" fragment="home" class="footer-brand">{{ site.name }}</a>
+    <p>{{ text.senior }}</p>
+  </div>
+  <nav aria-label="Footer navigation">
+    <a routerLink="/" fragment="home">{{ text.home }}</a>
+    <a routerLink="/" fragment="about">{{ text.about }}</a>
+    <a routerLink="/" fragment="skills">{{ text.skills }}</a>
+    <a routerLink="/" fragment="experience">{{ text.experience }}</a>
+    <a routerLink="/" fragment="projects">{{ text.projects }}</a>
+    <a routerLink="/" fragment="contact">{{ text.contact }}</a>
+  </nav>
+  <p class="copyright">© {{ year }} {{ site.name }}</p>
+</footer>

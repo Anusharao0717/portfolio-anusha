@@ -1,0 +1,36 @@
+<header class="site-header" (keydown.escape)="onEscape()">
+  <a class="brand" routerLink="/" fragment="home" aria-label="Home" (click)="closeMenu()">
+    <span class="brand-mark">A</span>
+    <span class="brand-name">Anusha</span>
+  </a>
+
+  <div class="header-actions">
+    <button class="theme-toggle" type="button" role="switch" aria-label="Dark mode"
+            [attr.aria-checked]="theme.isDark()"
+            [class.is-dark]="theme.isDark()"
+            [attr.title]="theme.isDark() ? text.light : text.dark"
+            (click)="theme.toggle()">
+      <span class="knob"></span>
+      <app-icon class="ico sun" name="sun" [size]="15" />
+      <app-icon class="ico moon" name="moon" [size]="15" />
+    </button>
+    <a class="resume-btn" [href]="resumeUrl" target="_blank" rel="noopener">
+      {{ text.resume }} <app-icon name="arrow-up-right" [size]="14" />
+    </a>
+  </div>
+
+  <button #menuButton class="mobile-menu" type="button" (click)="toggleMenu()"
+          [attr.aria-expanded]="menuOpen()" aria-controls="primary-nav" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav id="primary-nav" class="nav-links" [class.open]="menuOpen()" aria-label="Primary navigation">
+    <a routerLink="/" fragment="home" [class.active]="spy.active() === 'home'" [attr.aria-current]="spy.active() === 'home' ? 'location' : null" (click)="closeMenu()">{{ text.home }}</a>
+    <a routerLink="/" fragment="about" [class.active]="spy.active() === 'about'" [attr.aria-current]="spy.active() === 'about' ? 'location' : null" (click)="closeMenu()">{{ text.about }}</a>
+    <a routerLink="/" fragment="skills" [class.active]="spy.active() === 'skills'" [attr.aria-current]="spy.active() === 'skills' ? 'location' : null" (click)="closeMenu()">{{ text.skills }}</a>
+    <a routerLink="/" fragment="experience" [class.active]="spy.active() === 'experience'" [attr.aria-current]="spy.active() === 'experience' ? 'location' : null" (click)="closeMenu()">{{ text.experience }}</a>
+    <a routerLink="/" fragment="projects" [class.active]="spy.active() === 'projects'" [attr.aria-current]="spy.active() === 'projects' ? 'location' : null" (click)="closeMenu()">{{ text.projects }}</a>
+    <a routerLink="/" fragment="contact" [class.active]="spy.active() === 'contact'" [attr.aria-current]="spy.active() === 'contact' ? 'location' : null" (click)="closeMenu()">{{ text.contact }}</a>
+    <a class="nav-resume" [href]="resumeUrl" target="_blank" rel="noopener" (click)="closeMenu()">{{ text.resume }} ↗</a>
+  </nav>
+</header>

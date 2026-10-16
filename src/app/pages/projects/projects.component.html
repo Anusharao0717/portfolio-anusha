@@ -1,0 +1,44 @@
+<section class="page-shell inner-page">
+  <span class="section-kicker">{{ text.portfolio }}</span>
+  <h1>{{ text.projectsHeading }}</h1>
+  <p class="lead">{{ text.projectsText }}</p>
+
+  <div class="toolbar">
+    <div class="filters" role="group" aria-label="Filter projects by category">
+      @for (filter of filters; track filter.value) {
+        <button type="button" [class.active]="activeFilter() === filter.value" [attr.aria-pressed]="activeFilter() === filter.value" (click)="setFilter(filter.value)">{{ filter.label }}</button>
+      }
+    </div>
+    <label class="search">
+      <span class="sr-only">Search projects</span>
+      <app-icon name="search" [size]="16" />
+      <input type="search" [formControl]="search" placeholder="Search projects…" autocomplete="off">
+    </label>
+  </div>
+
+  <p class="results" role="status" aria-live="polite">
+    {{ visibleProjects().length }} {{ visibleProjects().length === 1 ? 'project' : 'projects' }} shown
+  </p>
+
+  @if (visibleProjects().length) {
+    <div class="project-grid">
+      @for (project of visibleProjects(); track project.title; let i = $index) {
+        <article class="project-card" [appReveal]="i % 3 * 80">
+          <div class="project-visual"><img [src]="project.image" [alt]="project.title" width="200" height="111" loading="lazy" decoding="async" (error)="imageFallback($event, project.title)"><small>{{ project.category }}</small></div>
+          <div class="project-body">
+            <h2>{{ project.title }}</h2>
+            <p>{{ project.description }}</p>
+            <div class="stack">
+              @for (item of project.stack; track item) {
+                <span>{{ item }}</span>
+              }
+            </div>
+            <a [href]="project.github" target="_blank" rel="noopener">GitHub <span class="sr-only">repository for {{ project.title }} (opens in a new tab)</span><span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      }
+    </div>
+  } @else {
+    <p class="empty">No projects match your search. <button type="button" class="link-btn" (click)="clearSearch(); setFilter('All')">Clear filters</button></p>
+  }
+</section>
