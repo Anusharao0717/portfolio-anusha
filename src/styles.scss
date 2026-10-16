@@ -53,7 +53,7 @@
 
 /* ---------- Base ---------- */
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 86px; background: var(--bg); }
+html { scroll-padding-top: 86px; background: var(--bg); }
 body {
   margin: 0;
   min-width: 320px;
@@ -100,11 +100,37 @@ main:focus { outline: none; }
 @keyframes fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @keyframes page-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 .fade-in { animation: fade-in .3s ease both; }
-/* Route change: the newly activated page fades in */
-router-outlet + * { animation: page-in .4s ease both; }
+/* Route change fallback (browsers without View Transitions): the new page fades in */
+@supports not (view-transition-name: none) { router-outlet + * { animation: page-in .4s ease both; } }
+/* Route change (View Transitions API): old page slides/fades out, new page slides/fades in; header + back-to-top stay put */
+.site-header { view-transition-name: site-header; }
+.to-top { view-transition-name: to-top; }
+::view-transition-old(root) { animation: .22s ease both vt-out; }
+::view-transition-new(root) { animation: .4s cubic-bezier(.2, .7, .2, 1) both vt-in; }
+::view-transition-group(site-header), ::view-transition-group(to-top) { animation: none; }
+::view-transition-old(site-header), ::view-transition-new(site-header), ::view-transition-old(to-top), ::view-transition-new(to-top) { animation: none; mix-blend-mode: normal; }
+@keyframes vt-out { to { opacity: 0; transform: translateY(-10px); } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(16px); } }
+
+/* ---------- Smooth scrolling (Lenis) — required CSS from the Lenis docs ---------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis, .lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* ---------- Text animation (TextRevealDirective): words slide up out of a mask ---------- */
+.tr .tr-word { display: inline-block; overflow: hidden; vertical-align: top; padding: .06em 0 .14em; margin: -.06em 0 -.14em; }
+.tr .tr-inner { display: inline-block; opacity: 0; transform: translateY(115%); }
+.tr.tr-on .tr-inner { opacity: 1; transform: none; transition: transform .85s cubic-bezier(.2, .7, .2, 1) calc(var(--i, 0) * 70ms), opacity .5s ease calc(var(--i, 0) * 70ms); }
+/* gradient text: with split words the gradient has to live on each word */
+.tr .grad .tr-inner { background: linear-gradient(90deg, var(--grad-from), var(--grad-to)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; padding-right: .04em; }
+
+/* ---------- 3D tilt (TiltDirective) + magnetic buttons (MagneticDirective) ---------- */
+.tilt { transition: transform .35s cubic-bezier(.2, .7, .2, 1); }
+.tilt.is-tilting { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-6px); will-change: transform; transition: transform .12s ease-out; }
+.magnetic { transition: translate .25s cubic-bezier(.2, .7, .2, 1); }
 /* Scroll-reveal (see RevealDirective) */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease var(--reveal-delay, 0ms), transform .6s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms); }
-.reveal.is-visible { opacity: 1; transform: none; }
+.reveal { opacity: 0; translate: 0 20px; transition: opacity .6s ease var(--reveal-delay, 0ms), translate .6s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms); }
+.reveal.is-visible { opacity: 1; translate: none; }
 
 /* ---------- Back to top ---------- */
 .to-top {
@@ -124,6 +150,5 @@ input.ng-touched.ng-invalid, textarea.ng-touched.ng-invalid { border-color: var(
 @media (max-width: 420px) { .page-shell { width: calc(100% - 22px); } .btn { width: 100%; } }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }

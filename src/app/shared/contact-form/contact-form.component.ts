@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TEXT } from '../../core/content';
 import { ContactService } from '../../core/contact.service';
 import { SITE } from '../../core/site.config';
+import { MagneticDirective } from '../motion/magnetic.directive';
 import { IconComponent } from '../icon/icon.component';
 
 type Status = 'idle' | 'sending' | 'sent' | 'mailto' | 'error';
@@ -11,7 +12,7 @@ type Status = 'idle' | 'sending' | 'sent' | 'mailto' | 'error';
   selector: 'app-contact-form',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, IconComponent],
+  imports: [ReactiveFormsModule, IconComponent, MagneticDirective],
   templateUrl: './contact-form.component.html',
   styleUrl: './contact-form.component.scss'
 })

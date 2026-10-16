@@ -2,11 +2,11 @@
   <section class="hero-section" id="home">
     <div class="hero-copy">
       <span class="eyebrow"><app-icon name="sparkles" [size]="14" /> {{ text.senior }}</span>
-      <h1>{{ text.heroTitle }} <span>{{ text.heroAccent }}</span></h1>
+      <h1 appTextReveal="load">{{ text.heroTitle }} <span class="grad">{{ text.heroAccent }}</span></h1>
       <p class="hero-text">{{ text.heroText }}</p>
       <div class="hero-actions">
-        <a class="btn primary" routerLink="/" fragment="projects">{{ text.viewWork }} <app-icon name="arrow-right" [size]="18" /></a>
-        <a class="btn ghost" [href]="site.resume" target="_blank" rel="noopener"><app-icon name="file-text" [size]="18" /> {{ text.viewResume }}</a>
+        <a class="btn primary" appMagnetic routerLink="/" fragment="projects">{{ text.viewWork }} <app-icon name="arrow-right" [size]="18" /></a>
+        <a class="btn ghost" appMagnetic [href]="site.resume" target="_blank" rel="noopener"><app-icon name="file-text" [size]="18" /> {{ text.viewResume }}</a>
       </div>
       <div class="socials">
         <a [href]="site.linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><app-icon name="linkedin" [size]="18" /></a>
@@ -15,28 +15,28 @@
       </div>
     </div>
 
-    <div class="hero-visual">
-      <div class="hero-glow glow-purple"></div>
-      <div class="hero-glow glow-blue"></div>
-      <div class="hero-photo">
+    <div class="hero-visual" [appParallax]="45">
+      <div class="hero-glow glow-purple" [appParallax]="-110"></div>
+      <div class="hero-glow glow-blue" [appParallax]="90"></div>
+      <div class="hero-photo" [appTilt]="8">
         <img src="images/hero-anusha.webp" width="414" height="380"
              alt="Anusha Pavanraj, frontend developer, working on a laptop next to Angular, React, JavaScript, TypeScript and Bootstrap logos"
              loading="eager" fetchpriority="high" (error)="imageFallback($event, site.name)">
       </div>
-      <div class="hero-dots"></div>
+      <div class="hero-dots" [appParallax]="-60"></div>
     </div>
   </section>
 
   <section class="home-section about-preview" id="about" appReveal aria-labelledby="about-title">
     <div class="section-title-row">
-      <div><span class="section-icon"><app-icon name="user" [size]="22" /></span><h2 id="about-title">{{ text.aboutMe }}</h2></div>
+      <div><span class="section-icon"><app-icon name="user" [size]="22" /></span><h2 id="about-title" appTextReveal>{{ text.aboutMe }}</h2></div>
       <a routerLink="/about" class="section-link">{{ text.moreAbout }} →</a>
     </div>
     <div class="about-preview-grid">
       <div class="about-copy">
         <p>{{ text.aboutText1 }}</p>
         <p>{{ text.aboutText2 }}</p>
-        <a routerLink="/about" class="btn primary small-btn">{{ text.moreAbout }} <app-icon name="arrow-right" [size]="16" /></a>
+        <a routerLink="/about" class="btn primary small-btn" appMagnetic>{{ text.moreAbout }} <app-icon name="arrow-right" [size]="16" /></a>
       </div>
       <div class="fact-panel">
         <div><span class="fact-icon"><app-icon name="map-pin" [size]="18" /></span><div><small>{{ text.location }}</small><strong>Mangaluru, Karnataka</strong></div></div>
@@ -49,25 +49,25 @@
 
   <section class="home-section skills-preview" id="skills" appReveal aria-labelledby="skills-title">
     <div class="section-title-row">
-      <div><span class="section-icon"><app-icon name="settings" [size]="22" /></span><h2 id="skills-title">{{ text.skillsTitle }}</h2></div>
+      <div><span class="section-icon"><app-icon name="settings" [size]="22" /></span><h2 id="skills-title" appTextReveal>{{ text.skillsTitle }}</h2></div>
       <span class="section-caption">Angular · React · TypeScript · UI Engineering</span>
     </div>
     <ul class="skill-grid" role="list">
       @for (skill of skills; track skill.name; let i = $index) {
-        <li class="skill-card" [appReveal]="i * 35"><span class="skill-logo" [class]="skill.className"><app-icon [name]="skill.icon" [size]="20" /></span><span>{{ skill.name }}</span></li>
+        <li class="skill-card" [appReveal]="i * 35" [appTilt]="10"><span class="skill-logo" [class]="skill.className"><app-icon [name]="skill.icon" [size]="20" /></span><span>{{ skill.name }}</span></li>
       }
     </ul>
     <div class="stats-grid">
-      <div class="stat-card"><span class="stat-icon"><app-icon name="briefcase" [size]="18" /></span><div><strong>6+</strong><small>{{ text.years }}</small></div></div>
-      <div class="stat-card"><span class="stat-icon"><app-icon name="layers" [size]="18" /></span><div><strong>Angular</strong><small>{{ text.primary }}</small></div></div>
-      <div class="stat-card"><span class="stat-icon"><app-icon name="sparkles" [size]="18" /></span><div><strong>AI + Canvas</strong><small>{{ text.advanced }}</small></div></div>
-      <div class="stat-card"><span class="stat-icon"><app-icon name="globe" [size]="18" /></span><div><strong>4</strong><small>{{ text.languages }}</small></div></div>
+      <div class="stat-card" [appReveal]="0"><span class="stat-icon"><app-icon name="briefcase" [size]="18" /></span><div><strong>6+</strong><small>{{ text.years }}</small></div></div>
+      <div class="stat-card" [appReveal]="90"><span class="stat-icon"><app-icon name="layers" [size]="18" /></span><div><strong>Angular</strong><small>{{ text.primary }}</small></div></div>
+      <div class="stat-card" [appReveal]="180"><span class="stat-icon"><app-icon name="sparkles" [size]="18" /></span><div><strong>AI + Canvas</strong><small>{{ text.advanced }}</small></div></div>
+      <div class="stat-card" [appReveal]="270"><span class="stat-icon"><app-icon name="globe" [size]="18" /></span><div><strong>4</strong><small>{{ text.languages }}</small></div></div>
     </div>
   </section>
 
   <section class="home-section experience-preview" id="experience" appReveal aria-labelledby="experience-title">
     <div class="section-title-row">
-      <div><span class="section-icon"><app-icon name="briefcase" [size]="22" /></span><h2 id="experience-title">{{ text.experience }}</h2></div>
+      <div><span class="section-icon"><app-icon name="briefcase" [size]="22" /></span><h2 id="experience-title" appTextReveal>{{ text.experience }}</h2></div>
     </div>
     <div class="experience-timeline">
       <article class="experience-item">
@@ -88,13 +88,13 @@
 
   <section class="home-section projects-preview" id="projects" appReveal aria-labelledby="projects-title">
     <div class="section-title-row">
-      <div><span class="section-icon"><app-icon name="folder-open" [size]="22" /></span><h2 id="projects-title">{{ text.workTitle }}</h2></div>
+      <div><span class="section-icon"><app-icon name="folder-open" [size]="22" /></span><h2 id="projects-title" appTextReveal>{{ text.workTitle }}</h2></div>
       <a routerLink="/projects" class="section-link">{{ text.viewAll }} →</a>
     </div>
     @defer (on viewport; prefetch on idle) {
     <div class="project-grid">
       @for (project of projects; track project.title; let i = $index) {
-        <article class="project-card" [appReveal]="i * 90">
+        <article class="project-card" [appReveal]="i * 90" [appTilt]="6">
           <div class="project-image"><img [src]="project.image" [alt]="project.title" width="200" height="111" loading="lazy" decoding="async" (error)="imageFallback($event, project.title)"><span>{{ project.tag }}</span></div>
           <div class="project-content">
             <h3>{{ project.title }}</h3>
@@ -112,7 +112,7 @@
 
   <section class="home-section strengths-preview" appReveal aria-labelledby="strengths-title">
     <div class="section-title-row">
-      <div><span class="section-icon"><app-icon name="quote" [size]="22" /></span><h2 id="strengths-title">{{ text.whatIBring }}</h2></div>
+      <div><span class="section-icon"><app-icon name="quote" [size]="22" /></span><h2 id="strengths-title" appTextReveal>{{ text.whatIBring }}</h2></div>
     </div>
     <div class="strength-grid">
       <article [appReveal]="0"><div class="strength-avatar" aria-hidden="true">A</div><div><p>Strong frontend engineering across Angular, React, TypeScript and responsive UI systems.</p><strong>Frontend Engineering</strong><small>Reusable components & scalable architecture</small></div></article>
@@ -122,7 +122,7 @@
 
   <section class="home-section contact-preview" id="contact" appReveal aria-labelledby="contact-title">
     <div class="section-title-row">
-      <div><span class="section-icon"><app-icon name="mail" [size]="22" /></span><h2 id="contact-title">{{ text.contactHeading }}</h2></div>
+      <div><span class="section-icon"><app-icon name="mail" [size]="22" /></span><h2 id="contact-title" appTextReveal>{{ text.contactHeading }}</h2></div>
     </div>
     <div class="contact-preview-grid">
       <div class="contact-copy">

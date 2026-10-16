@@ -6,6 +6,10 @@ import { showImageFallback } from '../../core/image-fallback';
 import { SITE } from '../../core/site.config';
 import { ContactFormComponent } from '../../shared/contact-form/contact-form.component';
 import { IconComponent } from '../../shared/icon/icon.component';
+import { MagneticDirective } from '../../shared/motion/magnetic.directive';
+import { ParallaxDirective } from '../../shared/motion/parallax.directive';
+import { TextRevealDirective } from '../../shared/motion/text-reveal.directive';
+import { TiltDirective } from '../../shared/motion/tilt.directive';
 import { RevealDirective } from '../../shared/reveal/reveal.directive';
 
 interface Skill { name: string; icon: IconName; className: string; }
@@ -14,7 +18,7 @@ interface Skill { name: string; icon: IconName; className: string; }
   selector: 'app-home',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, IconComponent, ContactFormComponent, RevealDirective],
+  imports: [RouterLink, IconComponent, ContactFormComponent, RevealDirective, TextRevealDirective, ParallaxDirective, TiltDirective, MagneticDirective],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

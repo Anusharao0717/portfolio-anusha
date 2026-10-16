@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, ElementRef, inject, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, afterNextRender, inject, signal, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { distinctUntilChanged, filter, map, skip } from 'rxjs';
+import { MotionService } from './core/motion.service';
 import { ScrollSpyService } from './core/scroll-spy.service';
 import { SeoService } from './core/seo.service';
 import { ThemeService } from './core/theme.service';
@@ -34,6 +35,7 @@ export class AppComponent {
   readonly spy = inject(ScrollSpyService);
   private readonly seo = inject(SeoService);
   private readonly router = inject(Router);
+  private readonly motion = inject(MotionService);
 
   // Instantiated here so the saved theme is applied as soon as the app starts.
   private readonly theme = inject(ThemeService);
@@ -42,6 +44,12 @@ export class AppComponent {
   protected readonly announcement = signal('');
 
   constructor() {
+    // Smooth scrolling (Lenis) + GSAP load after first paint, so they never delay the initial render.
+    afterNextRender(() => {
+      const idle = (window as Window & { requestIdleCallback?: (cb: () => void) => number }).requestIdleCallback;
+      idle ? idle(() => void this.motion.load()) : setTimeout(() => void this.motion.load(), 200);
+    });
+
     // Move keyboard/screen-reader focus to the new page's content after a real page change
     // (not for in-page #section links, and not on first load).
     this.router.events
@@ -66,6 +74,6 @@ export class AppComponent {
   }
 
   scrollTop(): void {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.motion.scrollTop();
   }
 }

@@ -1,6 +1,6 @@
 <section class="page-shell inner-page">
   <span class="section-kicker">{{ text.portfolio }}</span>
-  <h1>{{ text.projectsHeading }}</h1>
+  <h1 appTextReveal="load">{{ text.projectsHeading }}</h1>
   <p class="lead">{{ text.projectsText }}</p>
 
   <div class="toolbar">
@@ -23,7 +23,7 @@
   @if (visibleProjects().length) {
     <div class="project-grid">
       @for (project of visibleProjects(); track project.title; let i = $index) {
-        <article class="project-card" [appReveal]="i % 3 * 80">
+        <article class="project-card" [appReveal]="i % 3 * 80" [appTilt]="6">
           <div class="project-visual"><img [src]="project.image" [alt]="project.title" width="200" height="111" loading="lazy" decoding="async" (error)="imageFallback($event, project.title)"><small>{{ project.category }}</small></div>
           <div class="project-body">
             <h2>{{ project.title }}</h2>

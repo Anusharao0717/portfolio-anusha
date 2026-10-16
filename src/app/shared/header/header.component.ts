@@ -4,13 +4,14 @@ import { TEXT } from '../../core/content';
 import { ScrollSpyService } from '../../core/scroll-spy.service';
 import { SITE } from '../../core/site.config';
 import { ThemeService } from '../../core/theme.service';
+import { MagneticDirective } from '../motion/magnetic.directive';
 import { IconComponent } from '../icon/icon.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, IconComponent],
+  imports: [RouterLink, IconComponent, MagneticDirective],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

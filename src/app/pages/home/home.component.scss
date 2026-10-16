@@ -23,7 +23,7 @@
   letter-spacing: .08em;
 }
 .hero-copy h1 { margin: 20px 0; font-size: clamp(40px, 5.6vw, 78px); line-height: 1.04; letter-spacing: -.05em; color: var(--text); }
-.hero-copy h1 span {
+.hero-copy h1 .grad {
   background: linear-gradient(90deg, var(--grad-from), var(--grad-to));
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
@@ -123,7 +123,7 @@
 /* ---------------- Projects ---------------- */
 .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .project-card { min-width: 0; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--surface); transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
-.project-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--shadow); }
+.project-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
 .project-image { height: 190px; position: relative; overflow: hidden; background: var(--surface2); }
 .project-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .project-image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(4, 8, 16, .35)); pointer-events: none; }
@@ -198,8 +198,10 @@
 ul.skill-grid { list-style: none; margin: 0; padding: 0; }
 
 /* ---------------- @defer placeholders (reserve space so layout doesn't jump) ---------------- */
-.defer-ph--projects { min-height: 420px; }
-.defer-ph--form { min-height: 300px; }
+.defer-ph--projects { min-height: 400px; }
+.defer-ph--form { min-height: 330px; }
+@media (max-width: 1050px) { .defer-ph--projects { min-height: 780px; } }
+@media (max-width: 600px) { .defer-ph--projects { min-height: 1380px; } .defer-ph--form { min-height: 420px; } }
 
 /* ---------------- Hero entrance animation ---------------- */
 @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
@@ -209,4 +211,6 @@ ul.skill-grid { list-style: none; margin: 0; padding: 0; }
 .hero-copy > :nth-child(3) { animation-delay: .16s; }
 .hero-copy > :nth-child(4) { animation-delay: .24s; }
 .hero-copy > :nth-child(5) { animation-delay: .32s; }
-.hero-photo { animation: pop-in .9s cubic-bezier(.2, .7, .2, 1) .15s both; }
+.hero-photo { animation: pop-in .9s cubic-bezier(.2, .7, .2, 1) .15s backwards; }
+.hero-copy > h1 { animation: none; }
+.hero-copy h1.tr .grad { background: none; -webkit-text-fill-color: initial; color: inherit; }

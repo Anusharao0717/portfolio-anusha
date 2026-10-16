@@ -6,6 +6,8 @@ import { TEXT } from '../../core/content';
 import { showImageFallback } from '../../core/image-fallback';
 import { SITE } from '../../core/site.config';
 import { IconComponent } from '../../shared/icon/icon.component';
+import { TextRevealDirective } from '../../shared/motion/text-reveal.directive';
+import { TiltDirective } from '../../shared/motion/tilt.directive';
 import { RevealDirective } from '../../shared/reveal/reveal.directive';
 
 interface Project {
@@ -21,7 +23,7 @@ interface Project {
   selector: 'app-projects',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, IconComponent, RevealDirective],
+  imports: [ReactiveFormsModule, IconComponent, RevealDirective, TextRevealDirective, TiltDirective],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss'
 })

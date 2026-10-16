@@ -11,7 +11,7 @@
             [attr.aria-invalid]="invalid('message')" [attr.aria-describedby]="showError() ? 'contact-form-error' : null"
             [attr.aria-label]="text.message" [placeholder]="text.messagePlaceholder"></textarea>
 
-  <button class="btn primary" type="submit" [disabled]="status() === 'sending'">
+  <button class="btn primary" appMagnetic type="submit" [disabled]="status() === 'sending'">
     @if (status() === 'sending') {
       <app-icon class="spin" name="loader-circle" [size]="18" /> {{ text.sending }}
     } @else {
